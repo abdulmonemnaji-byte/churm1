@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LTT | لوحة التنبؤ بتسرب العملاء</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">L</span><span>LTT <small>ANALYTICS</small></span></div>
+    <div class="workspace"><span class="dot"></span> بيئة الإنتاج <i class="fa-solid fa-chevron-down"></i></div>
+    <nav>
+      <a class="active" href="#overview"><i class="fa-solid fa-grid-2"></i>نظرة تنفيذية</a>
+      <a href="#customers"><i class="fa-solid fa-users"></i>مخاطر العملاء <b>128</b></a>
+      <a href="#drivers"><i class="fa-solid fa-chart-pie"></i>محركات التسرب</a>
+      <a href="#segments"><i class="fa-solid fa-layer-group"></i>شرائح العملاء</a>
+      <a href="#opportunities"><i class="fa-solid fa-bullseye"></i>فرص الاحتفاظ</a>
+    </nav>
+    <div class="sidebar-bottom"><a href="#"><i class="fa-regular fa-circle-question"></i>مركز المساعدة</a><div class="profile"><span>م</span><div><strong>محمد السنوسي</strong><small>مدير التحليلات</small></div><i class="fa-solid fa-ellipsis"></i></div></div>
+  </aside>
+  <main>
+    <header>
+      <div class="headline"><div class="crumb">التحليلات <i class="fa-solid fa-chevron-left"></i> التنبؤ بتسرب العملاء</div><h1>لوحة التنبؤ بتسرب العملاء</h1><p>اكتشف العملاء المعرضين للمغادرة، واتخذ الإجراء المناسب في الوقت المناسب.</p></div>
+      <div class="header-actions"><button class="icon-btn" aria-label="الإشعارات"><i class="fa-regular fa-bell"></i><em></em></button><button class="btn secondary"><i class="fa-solid fa-file-arrow-down"></i> تصدير التقرير</button><button class="btn primary" id="summaryBtn"><i class="fa-solid fa-sparkles"></i> ملخص ذكي</button></div>
+    </header>
+    <section class="filters" aria-label="مرشحات البيانات">
+      <label>الفترة الزمنية<select id="period"><option>آخر 90 يومًا</option><option>آخر 30 يومًا</option><option>هذا العام</option></select></label>
+      <label>المنطقة<select id="region"><option value="all">كل المناطق</option><option>طرابلس</option><option>بنغازي</option><option>مصراتة</option><option>الجنوب</option></select></label>
+      <label>الباقة<select id="plan"><option value="all">كل الباقات</option><option>فايبر ماكس</option><option>بيزنس برو</option><option>موبايل بلس</option></select></label>
+      <label>مستوى المخاطر<select id="risk"><option value="all">كل المستويات</option><option value="high">خطر مرتفع</option><option value="medium">خطر متوسط</option><option value="low">خطر منخفض</option></select></label>
+      <button class="clear" id="reset"><i class="fa-solid fa-arrow-rotate-right"></i> إعادة ضبط</button>
+      <div class="updated"><i class="fa-solid fa-circle-check"></i> تم التحديث منذ 12 دقيقة</div>
+    </section>
+    <section class="kpis" id="overview">
+      <article class="kpi"><div class="kpi-icon blue"><i class="fa-solid fa-users"></i></div><div><span>إجمالي العملاء</span><strong id="customerCount">48,274</strong><small class="up"><i class="fa-solid fa-arrow-trend-up"></i> 3.2% <b>عن الفترة السابقة</b></small></div></article>
+      <article class="kpi"><div class="kpi-icon red"><i class="fa-solid fa-user-minus"></i></div><div><span>معدل التسرب الحالي</span><strong id="churnRate">7.8%</strong><small class="down"><i class="fa-solid fa-arrow-trend-down"></i> 0.6% <b>تحسن عن الشهر السابق</b></small></div></article>
+      <article class="kpi"><div class="kpi-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div><div><span>عملاء معرضون للخطر</span><strong id="riskCount">3,767</strong><small><i class="fa-solid fa-circle high-dot"></i> 128 أولوية قصوى</small></div></article>
+      <article class="kpi"><div class="kpi-icon teal"><i class="fa-solid fa-coins"></i></div><div><span>إيرادات شهرية معرضة للخطر</span><strong id="revenueRisk">1.24 م.د.ل</strong><small class="up"><i class="fa-solid fa-arrow-trend-up"></i> 18% <b>قابلة للإنقاذ</b></small></div></article>
+    </section>
+    <section class="content-grid">
+      <article class="panel trend"><div class="panel-title"><div><h2>اتجاه التسرب والتوقعات</h2><p>معدل التسرب الفعلي والمتوقع خلال الأشهر القادمة</p></div><div class="legend"><span><i class="line actual"></i>فعلي</span><span><i class="line predicted"></i>متوقع</span><button class="more"><i class="fa-solid fa-ellipsis"></i></button></div></div><div class="chart-wrap"><svg id="trendChart" viewBox="0 0 720 250" role="img" aria-label="مخطط اتجاه التسرب"></svg><div class="tooltip" id="chartTip"></div></div></article>
+      <article class="panel risk-dist"><div class="panel-title"><div><h2>توزيع مخاطر العملاء</h2><p>حسب توقعات نموذج التسرب</p></div><button class="more"><i class="fa-solid fa-ellipsis"></i></button></div><div class="donut-row"><div class="donut" id="donut"><span><strong>3,767</strong><small>عميل معرض للخطر</small></span></div><div class="risk-legend"><button data-risk="high"><i class="legend-dot high"></i><span>خطر مرتفع<small>احتمالية ≥ 70%</small></span><strong>128 <small>3.4%</small></strong></button><button data-risk="medium"><i class="legend-dot medium"></i><span>خطر متوسط<small>احتمالية 40–69%</small></span><strong>814 <small>21.6%</small></strong></button><button data-risk="low"><i class="legend-dot low"></i><span>خطر منخفض<small>احتمالية &lt; 40%</small></span><strong>2,825 <small>75.0%</small></strong></button></div></div></article>
+    </section>
+    <section class="content-grid second">
+      <article class="panel forecast"><div class="panel-title"><div><h2>توقعات التسرب القادمة</h2><p>العملاء المتوقع مغادرتهم حسب الفترة</p></div><button class="more"><i class="fa-solid fa-ellipsis"></i></button></div><div class="forecast-values"><div><span>خلال 30 يومًا</span><strong>1,142</strong><small class="high-text">+ 184 عميل</small></div><div><span>خلال 60 يومًا</span><strong>2,318</strong><small class="medium-text">+ 376 عميل</small></div><div><span>خلال 90 يومًا</span><strong>3,767</strong><small>+ 621 عميل</small></div></div><div class="mini-bars"><i style="height:31%"></i><i style="height:57%"></i><i style="height:88%"></i></div></article>
+      <article class="panel drivers" id="drivers"><div class="panel-title"><div><h2>أهم محركات التسرب</h2><p>العوامل الأكثر تأثيرًا في النموذج</p></div><button class="more"><i class="fa-solid fa-ellipsis"></i></button></div><div class="drivers-list" id="driversList"></div></article>
+      <article class="panel opportunities" id="opportunities"><div class="panel-title"><div><h2>فرص الاحتفاظ</h2><p>عملاء مرتفعو القيمة وعاليو المخاطر</p></div><a href="#customers">عرض الكل <i class="fa-solid fa-arrow-left"></i></a></div><div class="opp-number"><strong>128</strong><span>أولوية قصوى للتدخل</span></div><div class="saved"><span><i class="fa-solid fa-shield-heart"></i> إيرادات يمكن إنقاذها</span><strong>224,600 د.ل</strong></div><button class="btn primary block" id="campaignBtn">بدء حملة احتفاظ</button></article>
+    </section>
+    <section class="panel customers" id="customers"><div class="panel-title"><div><h2>العملاء الأعلى عرضة للتسرب</h2><p>مرتبة حسب أولوية التدخل وقيمة العميل</p></div><div class="table-actions"><label class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="search" placeholder="بحث بمعرف العميل..." /></label><button class="btn secondary">عرض كل العملاء <i class="fa-solid fa-arrow-left"></i></button></div></div><div class="table-wrap"><table><thead><tr><th>العميل</th><th>الشريحة</th><th>الباقة</th><th>ARPU</th><th>مدة الاشتراك</th><th>الاستخدام</th><th>الشكاوى</th><th>احتمالية التسرب</th><th>المخاطر</th><th>الإجراء المقترح</th><th></th></tr></thead><tbody id="customerRows"></tbody></table></div><footer class="table-footer"><span>عرض <b id="shownCount">5</b> من 3,767 عميل</span><div><button disabled><i class="fa-solid fa-chevron-right"></i></button><button class="page active-page">1</button><button class="page">2</button><button class="page">3</button><span>...</span><button class="page">754</button><button><i class="fa-solid fa-chevron-left"></i></button></div></footer></section>
+    <section class="bottom-grid" id="segments"><article class="panel"><div class="panel-title"><div><h2>التسرب حسب شريحة العميل</h2><p>مقارنة معدل التسرب بين الشرائح</p></div></div><div class="segment-chart" id="segmentChart"></div></article><article class="panel insight"><i class="fa-solid fa-sparkles"></i><div><h2>رصد النموذج نمطًا جديدًا</h2><p>العملاء الذين انخفض استخدامهم بأكثر من 30% خلال 45 يومًا، مع شكوى مفتوحة، لديهم احتمال تسرب أعلى بـ <b>2.4×</b>.</p><button id="insightBtn">استكشاف العملاء المتأثرين <i class="fa-solid fa-arrow-left"></i></button></div></article></section>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
